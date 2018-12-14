@@ -1,10 +1,12 @@
 package utils
 
 import (
-	"github.com/xfrr/goffmpeg/models"
+	"fmt"
 	"runtime"
 	"strconv"
 	"strings"
+
+	"github.com/s31b18/ffmpeg-m/models"
 )
 
 func DurToSec(dur string) (sec float64) {
@@ -25,6 +27,7 @@ func DurToSec(dur string) (sec float64) {
 func GetFFmpegExec() []string {
 	var platform = runtime.GOOS
 	var command = []string{"", "ffmpeg"}
+	fmt.Println("555")
 	switch platform {
 	case "windows":
 		command[0] = "where"

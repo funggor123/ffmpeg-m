@@ -2,9 +2,11 @@ package ffmpeg
 
 import (
 	"bytes"
-	"github.com/xfrr/goffmpeg/utils"
+	"fmt"
 	"os/exec"
 	"strings"
+
+	"github.com/s31b18/ffmpeg-m/utils"
 )
 
 type Configuration struct {
@@ -13,11 +15,14 @@ type Configuration struct {
 }
 
 func Configure() (Configuration, error) {
+	fmt.Println("awdwadss")
 	var outFFmpeg bytes.Buffer
 	var outProbe bytes.Buffer
 	execFFmpegCommand := utils.GetFFmpegExec()
 	execFFprobeCommand := utils.GetFFprobeExec()
-
+	fmt.Println(execFFmpegCommand[1])
+	fmt.Println(execFFmpegCommand[0])
+	fmt.Println("  3r")
 	cmdFFmpeg := exec.Command(execFFmpegCommand[0], execFFmpegCommand[1])
 	cmdProbe := exec.Command(execFFprobeCommand[0], execFFprobeCommand[1])
 
@@ -26,6 +31,7 @@ func Configure() (Configuration, error) {
 
 	err := cmdFFmpeg.Run()
 	if err != nil {
+		fmt.Println("  awdw")
 		return Configuration{}, err
 	}
 

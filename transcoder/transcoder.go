@@ -6,15 +6,16 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/xfrr/goffmpeg/ffmpeg"
-	"github.com/xfrr/goffmpeg/models"
-	"github.com/xfrr/goffmpeg/utils"
 	"io"
 	"os"
 	"os/exec"
 	"regexp"
 	"strconv"
 	"strings"
+
+	"github.com/xfrr/goffmpeg/ffmpeg"
+	"github.com/xfrr/goffmpeg/models"
+	"github.com/xfrr/goffmpeg/utils"
 )
 
 type Transcoder struct {
@@ -66,13 +67,15 @@ func (t Transcoder) GetCommand() []string {
 /*** FUNCTIONS ***/
 
 func (t *Transcoder) Initialize(inputPath string, outputPath string) error {
-
+	fmt.Println("awdawd")
 	configuration, err := ffmpeg.Configure()
 	if err != nil {
+		fmt.Println(fmt.Sprint(err))
+		fmt.Println("awdawd")
 		fmt.Println(err)
 		return err
 	}
-
+	fmt.Println("end")
 	if inputPath == "" {
 		return errors.New("error: transcoder.Initialize -> inputPath missing")
 	}
@@ -81,8 +84,6 @@ func (t *Transcoder) Initialize(inputPath string, outputPath string) error {
 	if os.IsNotExist(err) {
 		return errors.New("error: transcoder.Initialize -> input file not found")
 	}
-
-
 
 	command := []string{"-i", inputPath, "-print_format", "json", "-show_format", "-show_streams", "-show_error"}
 
