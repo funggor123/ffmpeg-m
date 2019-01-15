@@ -13,9 +13,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/xfrr/goffmpeg/ffmpeg"
-	"github.com/xfrr/goffmpeg/models"
-	"github.com/xfrr/goffmpeg/utils"
+	"github.com/s31b18/ffmpeg-m/ffmpeg"
+	"github.com/s31b18/ffmpeg-m/models"
+	"github.com/s31b18/ffmpeg-m/utils"
 )
 
 type Transcoder struct {
@@ -109,7 +109,7 @@ func (t *Transcoder) Initialize(inputPath string, outputPath string) error {
 	MediaFile.SetInputPath(inputPath)
 	MediaFile.SetOutputPath(outputPath)
 	// Set transcoder configuration
-
+	
 	t.SetMediaFile(MediaFile)
 	t.SetConfiguration(configuration)
 
