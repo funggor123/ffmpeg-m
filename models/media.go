@@ -36,6 +36,7 @@ type Mediafile struct {
 	durationInput         string
 	seekTime              string
 	quality               int
+	level 				  int
 	strict                int
 	muxDelay              string
 	seekUsingTsInput      bool
@@ -192,6 +193,11 @@ func (m *Mediafile) SetCopyTs(val bool) {
 func (m *Mediafile) SetMaped(val int) {
 	m.maped = val
 }
+
+func (m *Mediafile) SetLevel(val int) {
+	m.level = val
+}
+
 
 func (m *Mediafile) SetC(val string) {
 	m.c = val
@@ -515,6 +521,7 @@ func (m *Mediafile) ToStrCommand() []string {
 		"C",
 		"CopyTs",
 		"Maped",
+		"Level",
 		"StreamIds",
 		"OutputFormat",
 		"SegmentList",
@@ -779,6 +786,13 @@ func (m *Mediafile) ObtainCopyTs() []string {
 func (m *Mediafile) ObtainMaped() []string {
 	if m.maped !=-1 {
 		return []string{"-map", fmt.Sprintf("%d", m.maped)}
+	}
+	return nil
+}
+
+func (m *Mediafile) ObtainLevel() []string {
+	if m.level !=-1 {
+		return []string{"-level", fmt.Sprintf("%d", m.level)}
 	}
 	return nil
 }
