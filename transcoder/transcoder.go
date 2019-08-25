@@ -67,15 +67,12 @@ func (t Transcoder) GetCommand() []string {
 /*** FUNCTIONS ***/
 
 func (t *Transcoder) Initialize(inputPath string, outputPath string) error {
-	fmt.Println("awdawd")
+
 	configuration, err := ffmpeg.Configure()
 	if err != nil {
-		fmt.Println(fmt.Sprint(err))
-		fmt.Println("awdawd")
-		fmt.Println(err)
 		return err
 	}
-	fmt.Println("end")
+
 	if inputPath == "" {
 		return errors.New("error: transcoder.Initialize -> inputPath missing")
 	}
@@ -109,7 +106,7 @@ func (t *Transcoder) Initialize(inputPath string, outputPath string) error {
 	MediaFile.SetInputPath(inputPath)
 	MediaFile.SetOutputPath(outputPath)
 	// Set transcoder configuration
-	
+
 	t.SetMediaFile(MediaFile)
 	t.SetConfiguration(configuration)
 
@@ -123,6 +120,7 @@ func (t *Transcoder) Run(progress bool) <-chan error {
 	if !progress {
 		command = append([]string{"-nostats", "-loglevel", "0"}, command...)
 	}
+	fmt.Println("ffmpeg command - ", command)
 	proc := exec.Command(t.configuration.FfmpegBin, command...)
 	if progress {
 		errStream, err := proc.StderrPipe()

@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"fmt"
 	"runtime"
 	"strconv"
 	"strings"
@@ -27,7 +26,7 @@ func DurToSec(dur string) (sec float64) {
 func GetFFmpegExec() []string {
 	var platform = runtime.GOOS
 	var command = []string{"", "ffmpeg"}
-	fmt.Println("555")
+
 	switch platform {
 	case "windows":
 		command[0] = "where"

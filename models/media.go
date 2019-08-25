@@ -26,7 +26,7 @@ type Mediafile struct {
 	audioChannels         int
 	bufferSize            int
 	threads               int
-	c 					  string
+	c                     string
 	preset                string
 	tune                  string
 	audioProfile          string
@@ -36,7 +36,7 @@ type Mediafile struct {
 	durationInput         string
 	seekTime              string
 	quality               int
-	level 				  int
+	level                 int
 	strict                int
 	muxDelay              string
 	seekUsingTsInput      bool
@@ -46,8 +46,8 @@ type Mediafile struct {
 	outputPath            string
 	outputFormat          string
 	copyTs                bool
-	maped				  int
-	segmentList			  string
+	maped                 int
+	segmentList           string
 	segmentTime           int
 	nativeFramerateInput  bool
 	inputInitialOffset    string
@@ -189,7 +189,6 @@ func (m *Mediafile) SetCopyTs(val bool) {
 	m.copyTs = val
 }
 
-
 func (m *Mediafile) SetMaped(val int) {
 	m.maped = val
 }
@@ -197,7 +196,6 @@ func (m *Mediafile) SetMaped(val int) {
 func (m *Mediafile) SetLevel(val int) {
 	m.level = val
 }
-
 
 func (m *Mediafile) SetC(val string) {
 	m.c = val
@@ -784,14 +782,14 @@ func (m *Mediafile) ObtainCopyTs() []string {
 }
 
 func (m *Mediafile) ObtainMaped() []string {
-	if m.maped !=-1 {
+	if m.maped != -1 {
 		return []string{"-map", fmt.Sprintf("%d", m.maped)}
 	}
 	return nil
 }
 
 func (m *Mediafile) ObtainLevel() []string {
-	if m.level !=-1 {
+	if m.level != -1 {
 		return []string{"-level", fmt.Sprintf("%d", m.level)}
 	}
 	return nil
@@ -799,13 +797,13 @@ func (m *Mediafile) ObtainLevel() []string {
 
 func (m *Mediafile) ObtainC() []string {
 	if m.c != "" {
-		return []string{"-c",m.c}
+		return []string{"-c", m.c}
 	}
 	return nil
 }
 
 func (m *Mediafile) ObtainSegmentTime() []string {
-	if m.segmentTime !=-1 {
+	if m.segmentTime != -1 {
 		return []string{"-segment_time", fmt.Sprintf("%d", m.segmentTime)}
 	}
 	return nil
